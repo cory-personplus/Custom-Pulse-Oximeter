@@ -2,6 +2,7 @@
 #include "driver/i2c.h"
 #include "maxim.h"
 #include "esp_log.h"
+#include "heartRate.h"
 
 #define SAMPLE_AVG 4
 
@@ -63,11 +64,32 @@ void app_main() {
             //Read or pop those samples
             currIr = get_ir(&cb, &cory);
             next_sample(&cb, &cory);
-            printf("Current Ir: %lu", currIr);
+
+            //To test well make it print values
+            detectBeat(currIr);
+            printf(">Current Ir:%lu\n", currIr);
             MAXIM_readTemp(&cory);
             printf("Current Temp: %f", get_tempC(&cory));
         }
         //RTOS
         vTaskDelay(pdMS_TO_TICKS(20));
     }
+
 }
+// float calculateBPM(MAX_30102 *dev)
+// {
+// //BPM Calc 
+
+
+//     //First we get the isolated main component of the signal.
+//     // averageDCEstimator(&ir_estimate, dev->ir_led);
+
+//     // //Then, we filter it (using first/second order butterworth)
+//     // ppgFilter(dev->ir_led, &states);
+
+//     // if (detectBeat)
+//     // {
+        
+//     // }
+
+// }

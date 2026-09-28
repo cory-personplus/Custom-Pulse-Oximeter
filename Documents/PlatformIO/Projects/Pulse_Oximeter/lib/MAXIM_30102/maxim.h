@@ -10,8 +10,9 @@
 //I2C write address = 0xAE
 //I2C read address = 0xAF
 #include "driver/i2c.h" /* ESP32 I2C FUNCTIONS*/
+#pragma once
 
-#define MAXIM_I2C_ADDR 0x57 // We shift the bit to make the primary addresss 7 bits. The last bnit is the R/W bit.
+#define MAXIM_I2C_ADDR 0x57 
 
 // I2C Bus default
 #define I2C_NUM I2C_NUM_0
@@ -58,7 +59,6 @@ typedef struct {
     
 } MAX_30102;
 
-//Make this a child
 typedef struct {
     uint8_t capacity;   //Good practice to mod the value by this after incrementing
     volatile uint8_t head;

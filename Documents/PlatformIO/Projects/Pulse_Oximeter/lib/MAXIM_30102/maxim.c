@@ -80,7 +80,7 @@ uint8_t MAXIM_Init( MAX_30102 *dev, uint8_t sampleAvg, uint8_t ledMode, uint8_t 
             break;
     }
 
-    //Config sp02 default
+    //Config sp02 default. 100 samples per second,  4096 ADC range, 17-bit ADC resolution
     sp02Mask = 0x27;
 
     switch(ledPulse)
@@ -146,7 +146,7 @@ esp_err_t MAXIM_readTemp( MAX_30102 *dev)
     //Need bit mask for tempFrac
     uint8_t tempInt = 0;
     uint8_t tempFrac = 0;
-    
+
     //Clear the temperature enable bit everytime 
     MAXIM_writeRegister(MAXIM_REG_TEMP_CONFIG, 0x01);
 
@@ -285,10 +285,3 @@ float get_tempC( MAX_30102 *dev)
 {
     return dev->temp_C;
 }
-
-
-//WE NEED TO CONFIG A CIRCULAR BUFFER
-//WE HAVE A HEAD, A TAIL, 
-// How could we go about this?
-
-//Now we need to actually write and read from this buffer, by calling the functions
